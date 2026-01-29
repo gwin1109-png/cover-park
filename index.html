@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Park - Кавер-группа</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* HEADER WITH RED WAVE */
+        .header-top {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: #fff;
+            padding: 100px 20px 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-top::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: #dc143c;
+            clip-path: polygon(0 40%, 5% 35%, 10% 45%, 15% 30%, 20% 40%, 25% 35%, 30% 45%, 35% 30%, 40% 40%, 45% 35%, 50% 50%, 55% 35%, 60% 40%, 65% 30%, 70% 45%, 75% 35%, 80% 40%, 85% 30%, 90% 45%, 95% 35%, 100% 40%, 100% 100%, 0 100%);
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-top .subtitle {
+            font-size: 0.85em;
+            color: #ccc;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .header-top h1 {
+            font-size: 4em;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .header-top .tagline {
+            font-size: 1.1em;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        /* FEATURES GRID 3x2 WITH ICONS */
+        .features {
+            background: #1a1a1a;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            color: #fff;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+        }
+
+        .feature-item h3 {
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .feature-item p {
+            font-size: 0.8em;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* YELLOW SECTION */
+        .yellow-section {
+            background: #ffc107;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .yellow-section h2 {
+            font-size: 1.8em;
+            color: #000;
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .gallery-showcase {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            scroll-behavior: smooth;
+        }
+
+        .gallery-showcase::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .gallery-showcase::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .gallery-showcase::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .gallery-showcase::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item {
+            width: 180px;
+            height: 180px;
+            min-width: 180px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: blur(0px);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-item:nth-child(1) { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: fadeInScale 0.8s ease-out 0.1s both;
+        }
+        .gallery-item:nth-child(2) { 
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            animation: fadeInScale 0.8s ease-out 0.2s both;
+        }
+        .gallery-item:nth-child(3) { 
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            animation: fadeInScale 0.8s ease-out 0.3s both;
+        }
+        .gallery-item:nth-child(4) { 
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            animation: fadeInScale 0.8s ease-out 0.4s both;
+        }
+        .gallery-item:nth-child(5) { 
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            animation: fadeInScale 0.8s ease-out 0.5s both;
+        }
+        .gallery-item:nth-child(6) { 
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+            animation: fadeInScale 0.8s ease-out 0.6s both;
+        }
+        .gallery-item:nth-child(7) { 
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            animation: fadeInScale 0.8s ease-out 0.7s both;
+        }
+        .gallery-item:nth-child(8) { 
+            background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
+            animation: fadeInScale 0.8s ease-out 0.8s both;
+        }
+        .gallery-item:nth-child(9) { 
+            background: #f0f0f0;
+            animation: fadeInScale 0.8s ease-out 0.9s both;
+        }
+        .gallery-item:nth-child(10) { 
+            background: #6200ea;
+            animation: fadeInScale 0.8s ease-out 1s both;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.08) translateY(-8px);
+            filter: blur(0px) brightness(1.1);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0px);
+            }
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            padding: 60px 20px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .about-title {
+            font-size: 1.8em;
+            color: #000;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        /* VIDEO/CONTENT SECTION */
+        .content-section {
+            background: #f5f5f5;
+            padding: 60px 20px;
+        }
+
+        .content-title {
+            font-size: 1.8em;
+            color: #000;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card h3 {
+            color: #dc143c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* PHOTO GALLERY SECTION */
+        .photos-section {
+            background: #fff;
+            padding: 60px 20px;
+        }
+
+        .photos-title {
+            font-size: 1.8em;
+            color: #000;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #ddd 0%, #eee 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            color: #999;
+            border: 2px dashed #ccc;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: #000;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .cta-text {
+            font-size: 1.6em;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            background: #dc143c;
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cta-btn:hover {
+            background: #b01030;
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.95em;
+            border-top: 3px solid #dc143c;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .gallery-showcase {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top h1 {
+                font-size: 2.5em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .gallery-showcase {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER WITH RED WAVE -->
+    <div class="header-top">
+        <div class="header-content">
+            <div class="subtitle">КАВЕР-ГРУППА</div>
+            <h1>COVER PARK</h1>
+            <div class="tagline">ЛУЧШАЯ КАВЕР-ГРУППА В РОССИИ</div>
+        </div>
+    </div>
+
+    <!-- FEATURES GRID 3x2 -->
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🎤</div>
+                <h3>100% КЛИЕНТО-<br>ОРИЕНТИРОВАННОСТЬ</h3>
+                <p>Нам важен не гонорар, а ваше удовольствие</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⭐</div>
+                <h3>ЛУЧШАЯ КАВЕР-<br>ГРУППА</h3>
+                <p>По версии конкурса Cover-Best 2021</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎸</div>
+                <h3>БОЛЕЕ 3000<br>ВЫСТУПЛЕНИЙ</h3>
+                <p>В Москве, России и по всему миру</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎬</div>
+                <h3>МОРЕ<br>ИНТЕРАКТИВА</h3>
+                <p>Просто стоять и петь - это не про нас</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎵</div>
+                <h3>СЫГРАЕМ<br>ВСЁ!</h3>
+                <p>Выучим ваши любимые песни</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>РАЗБИВАЕМ<br>ГИТАРУ</h3>
+                <p>Если пожелаете... Да, это уже включено</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- YELLOW SECTION WITH GALLERY -->
+    <div class="yellow-section">
+        <h2>ЯРКАЯ ФОТОСЕССИЯ УЖЕ НА САЙТЕ!</h2>
+        <p style="color: #000; margin-bottom: 30px; font-size: 0.95em;">Решили порадовать всех поклонников группы новыми фото!</p>
+        <div class="gallery-showcase">
+            <div class="gallery-item">📸</div>
+            <div class="gallery-item">📸</div>
+            <div class="gallery-item">📸</div>
+            <div class="gallery-item">📸</div>
+            <div class="gallery-item">📸</div>
+            <div class="gallery-item">📸</div>
+            <div class="gallery-item">📸</div>
+            <div class="gallery-item">📸</div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <div class="about-section">
+        <h2 class="about-title">О ГРУППЕ</h2>
+        <div class="about-text">
+            <p>COVER PARK — это сочетание мужской харизмы и женского обаяния, которое не оставит равнодушным даже самого взыскательного зрителя.</p>
+            <p>Динамичное исполнение популярнейших российских и зарубежных хитов в совокупности с интерактивным шоу создадут уникальную атмосферу вашего мероприятия.</p>
+        </div>
+    </div>
+
+    <!-- CONTENT SECTION -->
+    <div class="content-section">
+        <h2 class="content-title">ВИДЕО И КОНТЕНТ</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <h3>SHORTS</h3>
+                <p>Короткие видео с наших выступлений и закулисной жизни группы. Подписывайся на канал!</p>
+            </div>
+            <div class="content-card">
+                <h3>МЫ В TELEGRAM</h3>
+                <p>Всё о кавер-группе COVER PARK. Новости, фото, видео и обновления о наших выступлениях.</p>
+            </div>
+            <div class="content-card">
+                <h3>КОРПОРАТИВЫ</h3>
+                <p>Выступили прямо в офисе банка на 55 этаже. Новогодний корпоратив в стиле 90х!</p>
+            </div>
+            <div class="content-card">
+                <h3>СВАДЬБЫ</h3>
+                <p>Жених и невеста танцевали весь вечер. Крутая свадьба с незабываемым финалом!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTOS SECTION -->
+    <div class="photos-section">
+        <h2 class="photos-title">НАШИ ВЫСТУПЛЕНИЯ</h2>
+        <div class="photos-grid">
+            <div class="photo-item">Фото 1</div>
+            <div class="photo-item">Фото 2</div>
+            <div class="photo-item">Фото 3</div>
+            <div class="photo-item">Фото 4</div>
+            <div class="photo-item">Фото 5</div>
+            <div class="photo-item">Фото 6</div>
+        </div>
+    </div>
+
+    <!-- CTA SECTION -->
+    <div class="cta-section">
+        <div class="cta-text">СДЕЛАЙТЕ ВАШ ПРАЗДНИК ЛУЧШЕ!</div>
+        <p style="margin-bottom: 30px; font-size: 1.1em;">Пригласите на него COVER PARK 🔥</p>
+        <div class="cta-buttons">
+            <a href="tel:+7" class="cta-btn">ПОЗВОНИТЬ</a>
+            <a href="https://t.me/" class="cta-btn">TELEGRAM</a>
+            <a href="https://vk.com/" class="cta-btn">ВКОНТАКТЕ</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Cover Park - Кавер-группа. Все права защищены.</p>
+        <p>Лучшая кавер-группа для вашего мероприятия</p>
+    </footer>
+</body>
+</html>
